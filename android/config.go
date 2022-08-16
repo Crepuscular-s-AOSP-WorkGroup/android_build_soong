@@ -597,8 +597,7 @@ func (c *config) HostToolDir() string {
 	} else {
 		return filepath.Join(c.soongOutDir, "host", c.PrebuiltOS(), "bin")
 	}
-
-var _ bootstrap.ConfigBlueprintToolLocation = (*config)(nil)
+}
 
 func (c *config) HostToolPath(ctx PathContext, tool string) Path {
 	path := pathForInstall(ctx, ctx.Config().BuildOS, ctx.Config().BuildArch, "bin", false, tool)
@@ -1242,10 +1241,6 @@ func (c *deviceConfig) DeviceKernelHeaderDirs() []string {
 
 func (c *deviceConfig) TargetSpecificHeaderPath() string {
 	return String(c.config.productVariables.TargetSpecificHeaderPath)
-}
-
-func (c *deviceConfig) SamplingPGO() bool {
-	return Bool(c.config.productVariables.SamplingPGO)
 }
 
 // JavaCoverageEnabledForPath returns whether Java code coverage is enabled for
